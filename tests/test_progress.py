@@ -109,5 +109,46 @@ class ViewTest(unittest.TestCase):
         self.assertEqual(info["current"]["docs"], ["https://code.claude.com/docs/en/overview.md"])
 
 
+class CliTest(unittest.TestCase):
+    def run_cli(self, root, *args):
+        env = dict(os.environ, DL_STATE_DIR=str(root / "state"))
+        return subprocess.run(
+            [sys.executable, str(SCRIPTS / "progress.py"), "--root", str(root),
+             "--today", "2026-11-13", *args],
+            capture_output=True, text=True, env=env)
+
+    def make_root(self, tmp):
+        root = Path(tmp)
+        (root / "curriculum.json").write_text(json.dumps(MINI), encoding="utf-8")
+        return root
+
+    def test_full_lesson_cycle(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = self.make_root(tmp)
+            for command in (["init"], ["start"], ["complete", "--score", "3/3"]):
+                result = self.run_cli(root, *command)
+                self.assertEqual(result.returncode, 0, result.stderr)
+            status = json.loads(result.stdout)
+            self.assertTrue(status["doneToday"])
+            self.assertEqual(status["current"]["id"], "00-02")
+            self.assertIn("✅", (root / "roadmap.md").read_text(encoding="utf-8"))
+            mirror = json.loads((root / "state" / "state.json").read_text(encoding="utf-8"))
+            self.assertEqual(mirror["lastCompletedDate"], "2026-11-13")
+
+    def test_init_refuses_to_overwrite(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = self.make_root(tmp)
+            self.run_cli(root, "init")
+            result = self.run_cli(root, "init")
+            self.assertEqual(result.returncode, 1)
+            self.assertIn("allaqachon", result.stderr)
+
+    def test_status_without_init_fails_cleanly(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            result = self.run_cli(self.make_root(tmp), "status")
+            self.assertEqual(result.returncode, 1)
+            self.assertIn("init", result.stderr)
+
+
 if __name__ == "__main__":
     unittest.main()

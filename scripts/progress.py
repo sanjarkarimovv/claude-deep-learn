@@ -6,11 +6,16 @@ tahrirlash xatoga olib keladi, CLI esa testlar bilan himoyalangan.
 """
 from __future__ import annotations
 
+import argparse
 import json
+import os
+import sys
 from datetime import date, timedelta
 from pathlib import Path
 from typing import List, Optional
 
+ROOT = Path(__file__).resolve().parent.parent
+DEFAULT_STATE_DIR = Path.home() / ".claude-deep-learn"
 TAG_ICONS = {"ai": "🧠", "claude": "🟠", "mix": "🟠🧠", "project": "📱"}
 DOC_PREFIXES = {
     "code": "https://code.claude.com/docs/en/",
@@ -166,3 +171,59 @@ def render_roadmap(progress: dict, curriculum: dict) -> str:
             lines.append(f"| {mark} | {lesson['id']} | {TAG_ICONS[lesson['tag']]} "
                          f"| {lesson['title']} | {lesson['goal']} |")
     return "\n".join(lines) + "\n"
+
+
+# ---------- Saqlash va CLI ----------
+
+def save(progress: dict, curriculum: dict, root: Path, state_dir: Path) -> None:
+    text = json.dumps(progress, ensure_ascii=False, indent=2) + "\n"
+    (root / "progress.json").write_text(text, encoding="utf-8")
+    (root / "roadmap.md").write_text(render_roadmap(progress, curriculum), encoding="utf-8")
+    # launchd ~/Desktop ni oʻqiy olmaydi (macOS TCC), shuning uchun nusxa yozamiz
+    state_dir.mkdir(parents=True, exist_ok=True)
+    (state_dir / "state.json").write_text(text, encoding="utf-8")
+
+
+def main(argv: Optional[List[str]] = None) -> int:
+    parser = argparse.ArgumentParser(prog="progress.py", description="Claude Deep Learn progress")
+    parser.add_argument("--root", type=Path, default=ROOT)
+    parser.add_argument("--today", type=date.fromisoformat)
+    commands = parser.add_subparsers(dest="command", required=True)
+    commands.add_parser("init").add_argument("--start", type=date.fromisoformat)
+    commands.add_parser("status")
+    commands.add_parser("start")
+    commands.add_parser("complete").add_argument("--score", required=True)
+    commands.add_parser("review-done").add_argument("--score", required=True)
+    commands.add_parser("render")
+    args = parser.parse_args(argv)
+
+    today = args.today or date.today()
+    state_dir = Path(os.environ.get("DL_STATE_DIR", DEFAULT_STATE_DIR))
+    curriculum = load_curriculum(args.root)
+    progress_path = args.root / "progress.json"
+    try:
+        if args.command == "init":
+            if progress_path.exists():
+                raise ValueError("progress.json allaqachon mavjud")
+            progress = new_progress(curriculum, args.start or today)
+        else:
+            if not progress_path.exists():
+                raise ValueError("progress.json topilmadi: avval `init` qiling")
+            progress = json.loads(progress_path.read_text(encoding="utf-8"))
+            if args.command == "start":
+                start_lesson(progress, today)
+            elif args.command == "complete":
+                complete_lesson(progress, curriculum, today, args.score)
+            elif args.command == "review-done":
+                complete_review(progress, today, args.score)
+    except ValueError as error:
+        print(f"Xato: {error}", file=sys.stderr)
+        return 1
+
+    save(progress, curriculum, args.root, state_dir)
+    print(json.dumps(summary(progress, curriculum, today), ensure_ascii=False, indent=2))
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
