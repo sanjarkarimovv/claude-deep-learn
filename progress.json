@@ -1,0 +1,13 @@
+{
+  "startDate": "2026-11-12",
+  "lastCompletedDate": null,
+  "streak": 0,
+  "current": {
+    "id": "00-01",
+    "title": "LLM qanday ishlaydi",
+    "status": "idle",
+    "startedAt": null
+  },
+  "completed": [],
+  "reviews": []
+}
