@@ -57,15 +57,19 @@ Claude ni (birinchi navbatda Claude Code ni) professional, chuqur, "core" daraja
 claude-deep-learn/
 ├── CLAUDE.md                  # o'qituvchi qoidalari: til, teglar, dars formati
 ├── .claude/skills/dars/       # /dars skill
-│   └── SKILL.md
-├── roadmap.md                 # 54 dars: id, nom, teg, maqsad, docs link, holat
+│   ├── SKILL.md
+│   └── lesson-template.md
+├── curriculum.json            # 54 dars: yagona manba (id, teg, nom, maqsad, amaliyot, docs)
+├── roadmap.md                 # curriculum + progress dan avtomatik yaratiladi
 ├── progress.json              # holat (schema pastda)
-├── lessons/<NN-modul>/<id>-<slug>.md   # dars kuni yaratiladi
-├── practice/<id>/             # user ishi + XULOSA.md
+├── lessons/<NN-modul>/<id>.md # dars kuni yaratiladi
+├── practice/<id>/             # user ishi + TOPSHIRIQ.md + XULOSA.md
 ├── scripts/
-│   ├── remind.sh
+│   ├── progress.py            # holatni oʻzgartiradigan yagona CLI (testlangan)
+│   ├── remind.py              # eslatma matni + osascript notification
 │   ├── reminder-install.sh
 │   └── reminder-uninstall.sh
+├── tests/                     # unittest (32 test)
 └── docs/plans/                # design va plan hujjatlari
 ```
 
@@ -92,9 +96,12 @@ claude-deep-learn/
   "startDate": "2026-11-13",
   "lastCompletedDate": null,
   "streak": 0,
-  "current": { "id": "00-01", "status": "idle", "startedAt": null },
+  "current": { "id": "00-01", "title": "LLM qanday ishlaydi", "status": "idle", "startedAt": null },
   "completed": [
     { "id": "00-01", "date": "2026-11-13", "quizScore": "3/3" }
+  ],
+  "reviews": [
+    { "date": "2026-11-14", "quizScore": "4/5" }
   ]
 }
 ```
@@ -102,7 +109,11 @@ claude-deep-learn/
 ## 6. Eslatmalar tizimi
 
 - **Mexanizm:** macOS `launchd` LaunchAgent. Claude Code dagi `CronCreate` yoki `/loop` faqat session ochiq turganda ishlaydi, shuning uchun bu yerga mos emas.
-- **Jadval:** har kuni 09:00, 10:00, …, 23:00 va 23:59 da `scripts/remind.sh` ishga tushadi.
+- **Jadval:** har kuni 09:00, 10:00, …, 23:00 va 23:59 da `remind.py` ishga tushadi.
+- **TCC muammosi va yechimi:** macOS `~/Desktop` ni himoyalaydi, shuning uchun `launchd` dan ishga tushgan python3 uni oʻqiy olmasligi mumkin. Yechim:
+  - `progress.py` har saqlashda holat nusxasini `~/.claude-deep-learn/state.json` ga yozadi;
+  - `reminder-install.sh` script larni `~/.claude-deep-learn/` ga nusxalaydi;
+  - `launchd` faqat shu papka bilan ishlaydi.
 - **Mantiq:** yakshanba boʻlsa yoki `lastCompletedDate == bugun` boʻlsa, script jim chiqadi. Aks holda `osascript` orqali notification koʻrsatadi.
 - **Kuchayib boruvchi matn:**
 
