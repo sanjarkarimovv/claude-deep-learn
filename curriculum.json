@@ -1,0 +1,677 @@
+{
+  "modules": [
+    {
+      "number": "00",
+      "slug": "ai-asoslari",
+      "title": "AI asoslari",
+      "lessons": [
+        {
+          "id": "00-01",
+          "tag": "ai",
+          "title": "LLM qanday ishlaydi",
+          "goal": "Next-token prediction, transformer va training bosqichlarini tushunish",
+          "practice": "Bir xil promptni Claude ga 3 marta yuborib, javoblardagi farqni va uning sababini yozish",
+          "docs": [
+            "api:intro",
+            "api:about-claude/glossary"
+          ]
+        },
+        {
+          "id": "00-02",
+          "tag": "ai",
+          "title": "Tokens va context window",
+          "goal": "Token nima, context window chegarasi va narx qanday hisoblanishini bilish",
+          "practice": "/context bilan session dagi token taqsimotini tahlil qilish va oʻzbekcha matn nega koʻproq token olishini tushuntirish",
+          "docs": [
+            "api:build-with-claude/token-counting",
+            "api:build-with-claude/context-windows"
+          ]
+        },
+        {
+          "id": "00-03",
+          "tag": "ai",
+          "title": "Sampling, hallucination va cheklovlar",
+          "goal": "Temperature, knowledge cutoff va hallucination sabablarini tushunish",
+          "practice": "Claude hallucination qiladigan 3 ta savol topish va har birini yaxshiroq prompt bilan tuzatish",
+          "docs": [
+            "api:test-and-evaluate/strengthen-guardrails/reduce-hallucinations",
+            "api:test-and-evaluate/strengthen-guardrails/increase-consistency"
+          ]
+        },
+        {
+          "id": "00-04",
+          "tag": "ai",
+          "title": "Prompt engineering asoslari",
+          "goal": "Aniq koʻrsatma, misollar (few-shot), rol va bosqichma-bosqich fikrlash texnikalari",
+          "practice": "Flutter widget yaratish uchun yomon promptni 4 ta texnika bilan yaxshilab, natijalarni solishtirish",
+          "docs": [
+            "api:build-with-claude/prompt-engineering/overview",
+            "api:build-with-claude/prompt-engineering/claude-prompting-best-practices"
+          ]
+        },
+        {
+          "id": "00-05",
+          "tag": "ai",
+          "title": "Agents va tool use konsepsiyasi",
+          "goal": "Agentic loop (think → act → observe) va tool calling qanday ishlashini tushunish",
+          "practice": "Claude Code dagi bitta vazifaning tool chaqiruvlarini kuzatib, agentic loop diagrammasini chizish",
+          "docs": [
+            "api:agents-and-tools/tool-use/how-tool-use-works",
+            "code:how-claude-code-works"
+          ]
+        },
+        {
+          "id": "00-06",
+          "tag": "ai",
+          "title": "Embeddings, RAG va evals",
+          "goal": "Vector search, retrieval va AI sifatini oʻlchash (evals) asoslarini bilish",
+          "practice": "Mobile AI ilova uchun RAG arxitekturasi va 5 ta eval mezonini loyihalash",
+          "docs": [
+            "api:build-with-claude/embeddings",
+            "api:test-and-evaluate/develop-tests"
+          ]
+        }
+      ]
+    },
+    {
+      "number": "01",
+      "slug": "claude-ekotizimi",
+      "title": "Claude ekotizimi",
+      "lessons": [
+        {
+          "id": "01-01",
+          "tag": "claude",
+          "title": "Claude model family va model tanlash",
+          "goal": "Opus, Sonnet, Haiku va Fable farqlari, narxlari va qaysi vazifaga qaysi model",
+          "practice": "5 ta real vazifa uchun model tanlash jadvalini sabab va taxminiy narx bilan tuzish",
+          "docs": [
+            "api:models/overview",
+            "api:about-claude/models/choosing-a-model",
+            "api:about-claude/pricing"
+          ]
+        },
+        {
+          "id": "01-02",
+          "tag": "claude",
+          "title": "Thinking va effort",
+          "goal": "Thinking va effort darajalari sifat, tezlik va narxga qanday taʼsir qilishini bilish",
+          "practice": "Bitta murakkab vazifani turli effort darajalarida bajartirib, natijalarni solishtirish",
+          "docs": [
+            "api:build-with-claude/thinking",
+            "api:build-with-claude/effort",
+            "code:model-config"
+          ]
+        },
+        {
+          "id": "01-03",
+          "tag": "claude",
+          "title": "Claude surfaces va Claude uchun prompting",
+          "goal": "claude.ai, Claude Code, Desktop, Web, mobile va API qachon kerakligi; XML tags bilan prompting",
+          "practice": "Bitta promptni XML tags bilan qayta yozish va qaysi ish uchun qaysi surface qulayligini xaritalash",
+          "docs": [
+            "code:platforms",
+            "api:build-with-claude/prompt-engineering/claude-prompting-best-practices"
+          ]
+        }
+      ]
+    },
+    {
+      "number": "02",
+      "slug": "claude-code-asoslari",
+      "title": "Claude Code asoslari",
+      "lessons": [
+        {
+          "id": "02-01",
+          "tag": "claude",
+          "title": "Claude Code qanday ishlaydi",
+          "goal": "Agentic loop, built-in tools va Claude Code arxitekturasini tushunish",
+          "practice": "Flutter loyihada Claude ga savol berib, qaysi tool lar va nima uchun ishlatilganini tahlil qilish",
+          "docs": [
+            "code:how-claude-code-works",
+            "code:tools-reference",
+            "code:features-overview"
+          ]
+        },
+        {
+          "id": "02-02",
+          "tag": "claude",
+          "title": "Interactive mode va buyruqlar",
+          "goal": "Slash commands, @ mentions, ! bash mode va shortcut larni erkin ishlatish",
+          "practice": "Eng foydali 10 ta buyruq va shortcut dan shaxsiy cheat sheet tuzish",
+          "docs": [
+            "code:interactive-mode",
+            "code:commands"
+          ]
+        },
+        {
+          "id": "02-03",
+          "tag": "claude",
+          "title": ".claude papka va CLAUDE.md",
+          "goal": "Memory ierarxiyasi (user, project, local), /init va CLAUDE.md best practices",
+          "practice": "Flutter loyihangiz uchun arxitektura, buyruqlar va qoidalarni oʻz ichiga olgan CLAUDE.md yozish",
+          "docs": [
+            "code:claude-directory",
+            "code:memory"
+          ]
+        },
+        {
+          "id": "02-04",
+          "tag": "claude",
+          "title": "Context window boshqaruvi",
+          "goal": "/context, /compact, /clear va prompt caching bilan context ni samarali boshqarish",
+          "practice": "Uzun session da /context ni kuzatib, qachon /compact yoki /clear kerakligini aniqlash",
+          "docs": [
+            "code:context-window",
+            "code:prompt-caching"
+          ]
+        },
+        {
+          "id": "02-05",
+          "tag": "claude",
+          "title": "Sessions",
+          "goal": "Session larni resume, continue, fork qilish va nomlash",
+          "practice": "Bitta vazifani 2 ta session ga boʻlib, --resume va --continue bilan davom ettirish",
+          "docs": [
+            "code:sessions"
+          ]
+        },
+        {
+          "id": "02-06",
+          "tag": "claude",
+          "title": "Permission modes va permissions",
+          "goal": "default, acceptEdits, plan va auto rejimlari hamda allow/deny qoidalarini tushunish",
+          "practice": "Loyiha uchun xavfsiz permission qoidalarini yozish (flutter test ruxsat, xavfli buyruqlar taqiq)",
+          "docs": [
+            "code:permission-modes",
+            "code:permissions"
+          ]
+        },
+        {
+          "id": "02-07",
+          "tag": "claude",
+          "title": "Checkpointing va model sozlamalari",
+          "goal": "/rewind bilan oʻzgarishlarni qaytarish, /model, fast mode va advisor ni ishlatish",
+          "practice": "Ataylab notoʻgʻri oʻzgarish qildirib, /rewind bilan qaytarish; model va effort ni almashtirib koʻrish",
+          "docs": [
+            "code:checkpointing",
+            "code:model-config",
+            "code:fast-mode",
+            "code:advisor"
+          ]
+        }
+      ]
+    },
+    {
+      "number": "03",
+      "slug": "professional-workflow",
+      "title": "Professional workflow",
+      "lessons": [
+        {
+          "id": "03-01",
+          "tag": "claude",
+          "title": "Claude Code best practices",
+          "goal": "Explore → plan → code → commit oqimi va aniq prompt yozish qoidalari",
+          "practice": "Flutter loyihada kichik feature ni toʻliq explore → plan → code → commit oqimi bilan qilish",
+          "docs": [
+            "code:best-practices",
+            "code:common-workflows"
+          ]
+        },
+        {
+          "id": "03-02",
+          "tag": "claude",
+          "title": "Plan mode chuqur",
+          "goal": "Plan mode qachon kerakligini bilish, plan ni tahrirlash va tasdiqlash",
+          "practice": "Oʻrtacha murakkab refactoring ni plan mode da rejalashtirib, plan ni 2 marta takomillashtirish",
+          "docs": [
+            "code:permission-modes",
+            "code:common-workflows"
+          ]
+        },
+        {
+          "id": "03-03",
+          "tag": "claude",
+          "title": "Git workflow va worktrees",
+          "goal": "Claude bilan commit, branch, PR va parallel worktree session lar",
+          "practice": "Ikki feature ni 2 ta worktree da parallel session larda ishlab, merge qilish",
+          "docs": [
+            "code:worktrees",
+            "code:common-workflows"
+          ]
+        },
+        {
+          "id": "03-04",
+          "tag": "claude",
+          "title": "Claude bilan debugging",
+          "goal": "Xatoni reproduce qilish, log tahlili va root cause ni topish metodikasi",
+          "practice": "Flutter loyihaga ataylab kiritilgan bug ni Claude bilan tizimli debugging orqali topish",
+          "docs": [
+            "code:common-workflows",
+            "code:troubleshooting"
+          ]
+        },
+        {
+          "id": "03-05",
+          "tag": "claude",
+          "title": "Claude bilan TDD",
+          "goal": "Test-first prompting va verification loop orqali ishonchli kod yozish",
+          "practice": "Dart utility funksiyasini TDD bilan yozish: avval test, keyin implementation",
+          "docs": [
+            "code:best-practices"
+          ]
+        },
+        {
+          "id": "03-06",
+          "tag": "claude",
+          "title": "Code review va xavfsizlik",
+          "goal": "/code-review, security guidance va ultrareview imkoniyatlarini ishlatish",
+          "practice": "Oʻz kodingizda /code-review ishlatib, topilgan muammolarni tahlil qilish va tuzatish",
+          "docs": [
+            "code:code-review-local",
+            "code:ultrareview",
+            "code:security-guidance"
+          ]
+        }
+      ]
+    },
+    {
+      "number": "04",
+      "slug": "customization",
+      "title": "Customization",
+      "lessons": [
+        {
+          "id": "04-01",
+          "tag": "claude",
+          "title": "Settings va precedence",
+          "goal": "User, project, local va managed settings qatlamlari qanday ishlashini tushunish",
+          "practice": "Shu repo uchun .claude/settings.json yaratib, precedence ni tajribada tekshirish",
+          "docs": [
+            "code:settings",
+            "code:settings-reference"
+          ]
+        },
+        {
+          "id": "04-02",
+          "tag": "claude",
+          "title": "Chuqur permissions va sandboxing",
+          "goal": "Murakkab permission qoidalari va sandboxed Bash bilan xavfsiz ishlash",
+          "practice": "Sandboxing ni yoqib, tarmoq va fayl tizimi cheklovlarini sinab koʻrish",
+          "docs": [
+            "code:permissions",
+            "code:sandboxing"
+          ]
+        },
+        {
+          "id": "04-03",
+          "tag": "claude",
+          "title": "Skills I: skill anatomiyasi",
+          "goal": "SKILL.md tuzilishi, frontmatter, arguments va dynamic context injection",
+          "practice": "/dars skill ini tahlil qilib, uning har bir qismi nima qilishini tushuntirish",
+          "docs": [
+            "code:skills"
+          ]
+        },
+        {
+          "id": "04-04",
+          "tag": "claude",
+          "title": "Skills II: oʻz skill ingizni yaratish",
+          "goal": "Real ish uchun qayta ishlatiladigan skill yozish va sinash",
+          "practice": "Flutter feature scaffolding (Clean Architecture qatlamlari) uchun skill yozish",
+          "docs": [
+            "code:skills",
+            "api:agents-and-tools/agent-skills/best-practices"
+          ]
+        },
+        {
+          "id": "04-05",
+          "tag": "claude",
+          "title": "Subagents",
+          "goal": "Built-in va custom subagent lar, ularning context va tool cheklovlari",
+          "practice": "Flutter code reviewer subagent yaratib, loyihada ishlatish",
+          "docs": [
+            "code:sub-agents"
+          ]
+        },
+        {
+          "id": "04-06",
+          "tag": "claude",
+          "title": "Hooks",
+          "goal": "Lifecycle event lar (PreToolUse, PostToolUse, Stop) bilan automation qurish",
+          "practice": "progress.json oʻzgarganda vizual HTML roadmap ni avtomatik yangilaydigan hook yozish",
+          "docs": [
+            "code:hooks-guide",
+            "code:hooks"
+          ]
+        },
+        {
+          "id": "04-07",
+          "tag": "claude",
+          "title": "MCP",
+          "goal": "MCP protokoli, server ulash, scope lar va xavfsizlik",
+          "practice": "Foydali MCP server (masalan GitHub yoki Figma) ulab, real vazifada ishlatish",
+          "docs": [
+            "code:mcp-quickstart",
+            "code:mcp"
+          ]
+        },
+        {
+          "id": "04-08",
+          "tag": "claude",
+          "title": "Output styles, statusline va keybindings",
+          "goal": "Claude Code interfeysi va javob uslubini oʻzingizga moslash",
+          "practice": "Joriy dars va streak ni koʻrsatadigan statusline yozish",
+          "docs": [
+            "code:output-styles",
+            "code:statusline",
+            "code:keybindings"
+          ]
+        },
+        {
+          "id": "04-09",
+          "tag": "claude",
+          "title": "Plugins",
+          "goal": "Plugin larni oʻrnatish, marketplace lar va oʻz plugin ingizni yaratish",
+          "practice": "Oʻz skill, subagent va hook laringizni bitta plugin ga yigʻish",
+          "docs": [
+            "code:plugins/overview",
+            "code:plugins/install",
+            "code:plugins/create"
+          ]
+        }
+      ]
+    },
+    {
+      "number": "05",
+      "slug": "automation",
+      "title": "Automation va multi-agent",
+      "lessons": [
+        {
+          "id": "05-01",
+          "tag": "claude",
+          "title": "Headless mode",
+          "goal": "claude -p, output formatlari va Claude ni script lardan ishlatish",
+          "practice": "Git diff dan avtomatik CHANGELOG yozadigan headless script yaratish",
+          "docs": [
+            "code:headless",
+            "code:cli-reference"
+          ]
+        },
+        {
+          "id": "05-02",
+          "tag": "claude",
+          "title": "GitHub Actions va CI",
+          "goal": "Claude Code ni CI/CD pipeline ga ulash",
+          "practice": "GitHub repo da PR larni avtomatik review qiladigan Claude workflow sozlash",
+          "docs": [
+            "code:github-actions"
+          ]
+        },
+        {
+          "id": "05-03",
+          "tag": "claude",
+          "title": "Scheduled tasks va routines",
+          "goal": "/loop, cron, cloud routines va desktop scheduled tasks farqini bilish",
+          "practice": "remind.py ga Telegram bot orqali telefon eslatmasini qoʻshish",
+          "docs": [
+            "code:scheduled-tasks",
+            "code:routines",
+            "code:desktop-scheduled-tasks"
+          ]
+        },
+        {
+          "id": "05-04",
+          "tag": "claude",
+          "title": "/goal va uzoq ishlaydigan vazifalar",
+          "goal": "Claude ni aniq yakunlash sharti bilan mustaqil ishlatish",
+          "practice": "/goal bilan kichik loyihada barcha test lar oʻtguncha ishlatish",
+          "docs": [
+            "code:goal"
+          ]
+        },
+        {
+          "id": "05-05",
+          "tag": "claude",
+          "title": "Multi-agent: parallel agents, teams va workflows",
+          "goal": "Parallel agent lar, agent teams va dynamic workflows qachon kerakligini bilish",
+          "practice": "Katta vazifani parallel subagent larga boʻlib bajartirish va natijani solishtirish",
+          "docs": [
+            "code:agents",
+            "code:agent-teams",
+            "code:workflows"
+          ]
+        },
+        {
+          "id": "05-06",
+          "tag": "claude",
+          "title": "Channels, artifacts va remote ishlash",
+          "goal": "Channels, artifacts, Remote Control, web va mobile dan Claude Code bilan ishlash",
+          "practice": "Dars xulosalaringizdan artifact sahifa yaratish va telefondan Remote Control bilan ulanish",
+          "docs": [
+            "code:channels",
+            "code:artifacts",
+            "code:remote-control",
+            "code:claude-code-on-the-web"
+          ]
+        }
+      ]
+    },
+    {
+      "number": "06",
+      "slug": "claude-api",
+      "title": "Claude API",
+      "lessons": [
+        {
+          "id": "06-01",
+          "tag": "mix",
+          "title": "Messages API asoslari",
+          "goal": "API key, birinchi request, message threads va stop reasons",
+          "practice": "curl va Dart da Messages API ga birinchi soʻrovni yuborish",
+          "docs": [
+            "api:get-started",
+            "api:build-with-claude/working-with-messages",
+            "api:build-with-claude/handling-stop-reasons",
+            "api:about-claude/api-credits-for-subscribers"
+          ]
+        },
+        {
+          "id": "06-02",
+          "tag": "mix",
+          "title": "Streaming",
+          "goal": "SSE event lari va real-time javobni qayta ishlash",
+          "practice": "Dart da javobni token-by-token chiqaradigan streaming client yozish",
+          "docs": [
+            "api:build-with-claude/streaming"
+          ]
+        },
+        {
+          "id": "06-03",
+          "tag": "mix",
+          "title": "Tool use I: tool lar va agent loop",
+          "goal": "Tool larni aniqlash, tool call larni qayta ishlash va agent loop yozish",
+          "practice": "Ob-havo va kalkulyator tool lari bilan oddiy agent loop yozish",
+          "docs": [
+            "api:agents-and-tools/tool-use/overview",
+            "api:agents-and-tools/tool-use/define-tools",
+            "api:agents-and-tools/tool-use/handle-tool-calls"
+          ]
+        },
+        {
+          "id": "06-04",
+          "tag": "mix",
+          "title": "Tool use II: server tools va tool runner",
+          "goal": "Web search, code execution, tool runner, parallel va strict tool use",
+          "practice": "Web search tool bilan manbalar keltirib javob beradigan script yozish",
+          "docs": [
+            "api:agents-and-tools/tool-use/server-tools",
+            "api:agents-and-tools/tool-use/tool-runner",
+            "api:agents-and-tools/tool-use/parallel-tool-use",
+            "api:agents-and-tools/tool-use/strict-tool-use"
+          ]
+        },
+        {
+          "id": "06-05",
+          "tag": "mix",
+          "title": "Structured outputs, vision va PDF",
+          "goal": "JSON schema bilan ishonchli output, rasm va PDF tahlili",
+          "practice": "Ilova skrinshotidan UI elementlar roʻyxatini JSON shaklida chiqarish",
+          "docs": [
+            "api:build-with-claude/structured-outputs",
+            "api:build-with-claude/vision",
+            "api:build-with-claude/pdf-support"
+          ]
+        },
+        {
+          "id": "06-06",
+          "tag": "mix",
+          "title": "Prompt caching, token counting va narx",
+          "goal": "Caching bilan narx va latency ni kamaytirish, xarajatni hisoblash",
+          "practice": "Bir xil soʻrovlarni caching bilan va caching siz yuborib, narxini solishtirish",
+          "docs": [
+            "api:build-with-claude/prompt-caching",
+            "api:build-with-claude/token-counting",
+            "api:about-claude/pricing"
+          ]
+        },
+        {
+          "id": "06-07",
+          "tag": "mix",
+          "title": "Context management: compaction va memory",
+          "goal": "Context editing, compaction va memory tool bilan uzun suhbatlarni boshqarish",
+          "practice": "Uzun chat uchun compaction strategiyasini sinab koʻrish",
+          "docs": [
+            "api:build-with-claude/context-editing",
+            "api:build-with-claude/compaction",
+            "api:agents-and-tools/tool-use/memory-tool"
+          ]
+        },
+        {
+          "id": "06-08",
+          "tag": "mix",
+          "title": "Batch, Files API, evals va guardrails",
+          "goal": "Ommaviy ishlov, fayllar, sifatni oʻlchash va prompt injection dan himoya",
+          "practice": "20 ta test case bilan oddiy eval yozib, promptni yaxshilash",
+          "docs": [
+            "api:build-with-claude/batch-processing",
+            "api:build-with-claude/files",
+            "api:test-and-evaluate/develop-tests",
+            "api:test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks"
+          ]
+        }
+      ]
+    },
+    {
+      "number": "07",
+      "slug": "agent-sdk",
+      "title": "Agent SDK",
+      "lessons": [
+        {
+          "id": "07-01",
+          "tag": "claude",
+          "title": "Agent SDK va agent loop",
+          "goal": "Agent SDK nima, Claude Code bilan aloqasi va agent loop qanday ishlaydi",
+          "practice": "Quickstart asosida birinchi agent ni ishga tushirish",
+          "docs": [
+            "code:agent-sdk/overview",
+            "code:agent-sdk/quickstart",
+            "code:agent-sdk/agent-loop"
+          ]
+        },
+        {
+          "id": "07-02",
+          "tag": "claude",
+          "title": "Custom tools va MCP",
+          "goal": "SDK da oʻz tool laringiz va MCP server larni ulash",
+          "practice": "Loyiha fayllarini tahlil qiladigan custom tool li agent yozish",
+          "docs": [
+            "code:agent-sdk/custom-tools",
+            "code:agent-sdk/mcp"
+          ]
+        },
+        {
+          "id": "07-03",
+          "tag": "claude",
+          "title": "Permissions, hooks va sessions",
+          "goal": "Agent xatti-harakatini nazorat qilish va session larni boshqarish",
+          "practice": "Xavfli buyruqlarni bloklaydigan hook li agent yozish",
+          "docs": [
+            "code:agent-sdk/permissions",
+            "code:agent-sdk/hooks",
+            "code:agent-sdk/sessions"
+          ]
+        },
+        {
+          "id": "07-04",
+          "tag": "claude",
+          "title": "Hosting va xavfsiz deploy",
+          "goal": "Agent ni production ga xavfsiz chiqarish va xarajatni kuzatish",
+          "practice": "Agent uchun deploy rejasi va xavfsizlik checklist ini tuzish",
+          "docs": [
+            "code:agent-sdk/hosting",
+            "code:agent-sdk/secure-deployment",
+            "code:agent-sdk/cost-tracking"
+          ]
+        }
+      ]
+    },
+    {
+      "number": "08",
+      "slug": "capstone",
+      "title": "Capstone: AI mobile ilova",
+      "lessons": [
+        {
+          "id": "08-01",
+          "tag": "project",
+          "title": "Arxitektura va backend proxy",
+          "goal": "Flutter ilova ↔ proxy ↔ Claude API arxitekturasi va API key xavfsizligi",
+          "practice": "Dart (shelf) da Claude API uchun proxy server yozish",
+          "docs": [
+            "api:get-api-key",
+            "api:manage-claude/authentication"
+          ]
+        },
+        {
+          "id": "08-02",
+          "tag": "project",
+          "title": "Streaming chat UI",
+          "goal": "SSE stream ni Flutter UI ga (BLoC) ulash",
+          "practice": "Javob token-by-token chiqadigan chat ekranini qurish",
+          "docs": [
+            "api:build-with-claude/streaming"
+          ]
+        },
+        {
+          "id": "08-03",
+          "tag": "project",
+          "title": "Mobile da tool use",
+          "goal": "Ilova funksiyalarini Claude ga tool sifatida berish",
+          "practice": "Chat ga 2 ta app tool qoʻshish (masalan eslatma yaratish va qidiruv)",
+          "docs": [
+            "api:agents-and-tools/tool-use/overview",
+            "api:agents-and-tools/tool-use/handle-tool-calls"
+          ]
+        },
+        {
+          "id": "08-04",
+          "tag": "project",
+          "title": "Narx, xatolar va production",
+          "goal": "Prompt caching, rate limits, error handling va foydalanuvchi limitlari",
+          "practice": "Proxy ga caching, retry va foydalanuvchi limitini qoʻshish",
+          "docs": [
+            "api:build-with-claude/prompt-caching",
+            "api:build-with-claude/handling-stop-reasons"
+          ]
+        },
+        {
+          "id": "08-05",
+          "tag": "project",
+          "title": "CI, review va yakuniy retrospektiva",
+          "goal": "Claude GitHub Actions bilan CI va butun kurs boʻyicha xulosa",
+          "practice": "Capstone repo ga Claude review workflow qoʻshish va kurs retrospektivasini yozish",
+          "docs": [
+            "code:github-actions"
+          ]
+        }
+      ]
+    }
+  ]
+}
